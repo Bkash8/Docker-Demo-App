@@ -7,4 +7,4 @@ RUN mkdir -p TESTAPP
 
 COPY . /TESTAPP
 
-CMD ["node", "/DOCKER-TESTAPP/server.js"]
+CMD ["node", "/docker-testapp/server.js"]
