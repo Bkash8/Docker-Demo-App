@@ -1,19 +1,19 @@
 version: '3.8'
 
 services:
-  db:
-    image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: test_db
+  mongo:
+    image: mongo
     ports:
-      - "3306:3306"
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: qwerty
 
-  web:
-    build: .
+  mongo-express:
+    image: mongo-express
     ports:
-      - "5000:5000"
-    depends_on:
-      - db
+      - 8081:8081
     environment:
-      FLASK_ENV: development
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: qwerty
+      ME_CONFIG_MONGODB_URL: mongodb://admin:qwerty@mongo:27017/
